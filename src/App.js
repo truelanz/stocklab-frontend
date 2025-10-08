@@ -40,7 +40,7 @@ const styles = {
     display: "flex",
     gap: "20px",
     margin: 0,
-    padding: 0,
+    padding: 10,
   },
   link: {
     color: "white",

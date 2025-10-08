@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./Product.css";
 import { getProducts } from "../services/productService";
 
 function Products() {
@@ -30,10 +31,11 @@ function Products() {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Produtos</h1>
+  <div style={{ padding: "2rem", textAlign: "center" }}>
+    <h1>Produtos</h1>
 
-      {/* Barra de pesquisa */}
+    {/* Barra de pesquisa */}
+    <div className="search-bar">
       <input
         type="text"
         placeholder="Pesquisar produto..."
@@ -44,42 +46,29 @@ function Products() {
         }}
         style={{
           marginBottom: "1.5rem",
-          padding: "0.5rem",
-          width: "300px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
+          padding: "1.2rem",
+          width: "50%",
+          borderRadius: "15px",
         }}
       />
-
+     </div>
+     
       {/* Grid de produtos */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "1rem",
-        }}
-      >
-        {products.map((p) => (
-          <div
-            key={p.id}
-            style={{
-              border: "1px solid #ccc",
-              borderRadius: "10px",
-              padding: "1rem",
-              textAlign: "center",
-              boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-            }}
-          >
-            <img
-              src={p.imgProduct}
-              alt={p.name}
-              style={{ width: "100%", height: "150px", objectFit: "cover", borderRadius: "5px" }}
-            />
-            <h3 style={{ margin: "0.5rem 0" }}>{p.name}</h3>
-            <p>Quantidade: {p.currentQuantity}</p>
-            <p>Valor: R$ {p.productValue}</p>
-          </div>
-        ))}
+       <div className="product-page">
+        <div className="product-grid">
+          {products.map((p) => (
+            <div key={p.id} className="product-card">
+              {/* <img
+                src={p.imgProduct}
+                alt={p.name}
+                className="product-image"
+              /> */}
+              <h3>{p.name}</h3>
+              <p>Quantidade: {p.currentQuantity}</p>
+              <p>Valor: R$ {p.productValue}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Paginação */}
