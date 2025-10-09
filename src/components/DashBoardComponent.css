@@ -37,11 +37,28 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.dashboard-icon {
+    height: 150px;
+    width: 150px;
+}
+
 /* Animação de hover */
 .dashboard-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
   background-color: #323437;
+}
+
+.dashboard-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.dashboard-card-link:visited,
+.dashboard-card-link:hover,
+.dashboard-card-link:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Responsividade */
