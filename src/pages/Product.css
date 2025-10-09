@@ -63,3 +63,36 @@
   margin-bottom: 0.5rem;
 }
 
+/* BUTTONS */
+.btn-back, .btn-next {
+  margin: 1rem;
+  padding: 0.7rem 2rem;
+  border-radius: 15px;
+}
+
+.btn-back {
+  background-color: rgb(63, 66, 68);
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-next {
+  background-color: rgb(63, 66, 68);
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: rgb(122, 93, 136);
+}
+.btn-next:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  background-color: rgb(87, 117, 138);
+}
