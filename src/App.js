@@ -2,12 +2,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Product from "./pages/Product";
+import ProductInsert from "./pages/ProductInsert";
+import CategoryInsert from "./pages/CategoryInsert";
 import Category from "./pages/Category";
 
 function App() {
   return (
     <Router>
-      <div>
+      <div style={styles.container}>
         {/* Menu de navegação */}
         <nav style={styles.navbar}>
           <ul style={styles.menu}>
@@ -22,34 +24,57 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/products" element={<Product />} />
+            <Route path="/products/new" element={<ProductInsert />} />
             <Route path="/categories" element={<Category />} />
+            <Route path="/categories/new" element={<CategoryInsert />} />
           </Routes>
         </div>
+
+        {/* Footer */}
+        <footer style={styles.footer}>
+          <p>© {new Date().getFullYear()} StockLab — Desenvolvido por Alan</p>
+        </footer>
       </div>
     </Router>
   );
 }
 
+
 const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+  },
   navbar: {
-    background: "#282c34",
-    padding: "10px",
+    backgroundColor: "#222",
+    padding: "10px 0",
   },
   menu: {
-    listStyle: "none",
     display: "flex",
-    gap: "20px",
+    justifyContent: "center",
+    listStyle: "none",
     margin: 0,
-    padding: 10,
+    padding: 0,
   },
   link: {
-    color: "white",
+    color: "#fff",
     textDecoration: "none",
+    margin: "0 20px",
     fontWeight: "bold",
   },
   content: {
+    flex: 1, // 👈 mantém o footer sempre no final da tela
     padding: "20px",
-  }
+    backgroundColor: "#1d1d1fff",
+  },
+  footer: {
+    textAlign: "center",
+    padding: "5px",
+    backgroundColor: "#222",
+    color: "#fff",
+    fontSize: "12px",
+  },
 };
 
 export default App;

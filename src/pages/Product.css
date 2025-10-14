@@ -1,3 +1,69 @@
+/* Centraliza os cards vertical e horizontalmente */
+.product-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh; /* ocupa toda a altura da tela */
+  /* background-color: #1e1f20; */
+}
+
+/* AAdd Button */
+.product-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 50px;
+  margin-bottom: 20px;
+}
+
+.add-category-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-product-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px; /* espaçamento entre img e texto */
+  cursor: pointer;
+}
+
+.add-product-button img {
+  width: 50px;
+  height: 50px;
+}
+
+.add-category-button img {
+  width: 50px;
+  height: 50px;
+}
+
+.add-product-button h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.add-category-button h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.add-product-button:hover, .add-category-button:hover {
+  transform: translateY(-4px);
+}
+
+/* Search Bar */
 .search-bar {
   display: flex;
   justify-content: center;
@@ -17,15 +83,6 @@
 .search-bar input:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-/* Centraliza os cards vertical e horizontalmente */
-.product-page {
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  min-height: 50vh; /* ocupa toda a altura da tela */
-  /* background-color: #1e1f20; */
 }
 
 /* Grade responsiva */
@@ -64,6 +121,12 @@
 }
 
 /* BUTTONS */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-back, .btn-next {
   margin: 1rem;
   padding: 0.7rem 2rem;

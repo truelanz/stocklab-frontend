@@ -9,6 +9,6 @@ export const getProducts = (page = 0, size = 5, search = "") => {
   });
 };
 export const getProductById = (id) => api.get(`/products/${id}`);
-export const createProduct = (product) => api.post("/products", product);
+export const createProduct = (product) => api.post("/products/new", product);
 export const updateProduct = (id, product) => api.put(`/products/${id}`, product);
 export const deleteProduct = (id) => api.delete(`/products/${id}`);
