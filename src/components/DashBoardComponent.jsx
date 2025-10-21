@@ -13,7 +13,7 @@ function DashboardComponent() {
     { name: "Produtos", img: produtosImg,  path: "/products" },
     { name: "Serviços", img: servicosImg },
     { name: "Relatórios", img: relatoriosImg },
-    { name: "Clientes", img: clientesImg },
+    { name: "Clientes", img: clientesImg, path: "/clients" },
     { name: "Funcionários", img: funcionariosImg },
     { name: "Configurações", img: configuracoesImg },
   ];

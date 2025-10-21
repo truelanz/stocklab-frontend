@@ -5,6 +5,8 @@ import Product from "./pages/Product";
 import ProductInsert from "./pages/ProductInsert";
 import CategoryInsert from "./pages/CategoryInsert";
 import Category from "./pages/Category";
+import Client from "./pages/Client";
+import ClientInsert from "./pages/ClientInsert";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="/products/new" element={<ProductInsert />} />
             <Route path="/categories" element={<Category />} />
             <Route path="/categories/new" element={<CategoryInsert />} />
+            <Route path="/clients" element={<Client />} />
+             <Route path="/clients/new" element={<ClientInsert />} /> 
           </Routes>
         </div>
 

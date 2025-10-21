@@ -114,6 +114,7 @@ function Product() {
         products={products}
         onEdit={handleEdit}
         onDelete={handleDelete}
+        loadProducts={loadProducts} 
       />
 
       <div className="pagination">

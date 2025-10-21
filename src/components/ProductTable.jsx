@@ -86,22 +86,33 @@ function ProductTable({ products, onDelete, loadProducts }) {
             : p
         );
 
-        loadProducts(updatedList);
+        await loadProducts();
         alert("Produto atualizado com sucesso!");
         closeModal();
       } else {
         throw new Error("Status não OK");
       }
     } catch (error) {
-      const status = error.response?.status;
-      // Só alerta se status for realmente fora do range 2xx
-      if (!status || status < 200 || status >= 300) {
-        console.error("Erro ao atualizar produto:", error);
-        alert("Erro ao atualizar produto. Verifique os campos e tente novamente.");
+    console.error("Erro ao atualizar produto:", error);
+
+    if (error.response && error.response.status === 400) {
+      const data = error.response.data;
+
+      if (data.errors && Array.isArray(data.errors)) {
+        // Monta uma string com todas as mensagens
+        const mensagens = data.errors
+          .map(err => `• ${err.message}`)
+          .join("\n");
+
+        alert(`Erro de validação:\n${mensagens}`);
       } else {
-        console.log("Requisição retornou 2xx mas caiu no catch (Axios parsing issue):", error);
+        alert(data.message || "Erro de validação ao atualizar produto.");
+      }
+      } else {
+        alert("Erro inesperado ao atualizar produto. Tente novamente.");
       }
     }
+
   };
 
   return (
@@ -211,7 +222,7 @@ function ProductTable({ products, onDelete, loadProducts }) {
 
             <div className="modal-buttons">
               <button onClick={handleSave} className="btn-save">
-                Salvar
+                Salvar 
               </button>
               <button onClick={closeModal} className="btn-cancel">
                 Cancelar
