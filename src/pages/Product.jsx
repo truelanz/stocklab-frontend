@@ -33,14 +33,26 @@ function Product() {
     loadProducts();
   }, [page, search]);
 
-  const handleEdit = async (id) => {
-    const newName = prompt("Novo nome do produto:");
-    if (newName) {
-      try {
-        await api.put(`/products/${id}`, { name: newName });
-        loadProducts();
+  const handleEdit = async (product) => {
+  const newName = prompt("Novo nome do produto:", product.name);
+  const newQuantity = prompt("Nova quantidade:", product.currentQuantity);
+  const newValue = prompt("Novo valor:", product.productValue);
+  const newCategoryId = prompt("Nova categoria ID:", product.categoryId);
+
+  if (newName && newQuantity && newValue && newCategoryId) {
+    try {
+      const updatedProduct = {
+        name: newName,
+        currentQuantity: Number(newQuantity),
+        productValue: Number(newValue),
+        categoryId: Number(newCategoryId),
+      };
+
+      await api.put(`/products/${product.id}`, updatedProduct);
+      loadProducts();
       } catch (error) {
         console.error("Erro ao atualizar produto:", error);
+        alert("Erro ao atualizar produto. Verifique o console.");
       }
     }
   };

@@ -127,13 +127,10 @@
   align-items: center;
 }
 
-.btn-back, .btn-next {
+.btn-next {
   margin: 1rem;
   padding: 0.7rem 2rem;
   border-radius: 15px;
-}
-
-.btn-back {
   background-color: rgb(63, 66, 68);
   color: rgb(0, 0, 0);
   border: none;
@@ -141,7 +138,10 @@
   transition: background-color 0.3s;
 }
 
-.btn-next {
+.btn-back {
+  margin: 1rem;
+  padding: 0.7rem 2rem;
+  border-radius: 15px;
   background-color: rgb(63, 66, 68);
   color: rgb(0, 0, 0);
   border: none;

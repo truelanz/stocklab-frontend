@@ -100,7 +100,7 @@ function CategoryInsert() {
 
         <div className="form-buttons">
           <button type="submit" className="btn-save">Salvar</button>
-          <button type="button" className="btn-cancel" onClick={() => navigate("/categories")}>Cancelar</button>
+          <button type="button" className="btn-cancel" onClick={() => navigate("/products")}>Cancelar</button>
         </div>
       </form>
 
