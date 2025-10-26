@@ -7,6 +7,7 @@ import CategoryInsert from "./pages/CategoryInsert";
 import Category from "./pages/Category";
 import Client from "./pages/Client";
 import ClientInsert from "./pages/ClientInsert";
+import Employee from "./pages/Employee";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
             <Route path="/categories" element={<Category />} />
             <Route path="/categories/new" element={<CategoryInsert />} />
             <Route path="/clients" element={<Client />} />
-             <Route path="/clients/new" element={<ClientInsert />} /> 
+            <Route path="/clients/new" element={<ClientInsert />} />
+            <Route path="/employees" element={<Employee />} /> 
           </Routes>
         </div>
 

@@ -25,7 +25,7 @@ function CategoryTable() {
     }
   };
 
-  // ✏️ Editar categoria (exemplo simples)
+  // Editar categoria
   const handleEdit = async (id) => {
     const newName = prompt("Novo nome da categoria:");
     if (newName) {

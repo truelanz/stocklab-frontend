@@ -14,7 +14,7 @@ function DashboardComponent() {
     { name: "Serviços", img: servicosImg },
     { name: "Relatórios", img: relatoriosImg },
     { name: "Clientes", img: clientesImg, path: "/clients" },
-    { name: "Funcionários", img: funcionariosImg },
+    { name: "Funcionários", img: funcionariosImg, path: "/employees"},
     { name: "Configurações", img: configuracoesImg },
   ];
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./ProductTable.css"; // usa o mesmo estilo para manter padrão
+import "./ClientTable.css";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import add2 from "../assets/add2.png";
 
 function ClientTable({ loadClients, onDelete }) {
   const navigate = useNavigate();
@@ -98,27 +99,25 @@ function ClientTable({ loadClients, onDelete }) {
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "1rem",
         }}
       >
-        <button
-          onClick={() => navigate("/clients/new")}
-          className="btn-save"
-          style={{ width: "200px" }}
-        >
-          + Novo Cliente
-        </button>
 
-        <input
-          type="text"
-          placeholder="Buscar cliente por nome, CPF ou telefone..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="category-search"
-          style={{ flex: "1", marginLeft: "1rem" }}
-        />
+        <div className="add-client-button" alt="Add Button" onClick={() => navigate("/clients/new")}>
+          <img src={add2}></img> <h2>Novo Cliente</h2>
+        </div>
+
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Buscar cliente por nome, CPF ou telefone..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
       </div>
 
       <table className="product-table">

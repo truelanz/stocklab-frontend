@@ -179,7 +179,8 @@ function ProductTable({ products, onDelete, loadProducts }) {
               type="number"
               name="currentQuantity"
               value={editedProduct.currentQuantity}
-              onChange={handleChange}
+              disabled
+              style={{ backgroundColor: "#2e2e31ff", cursor: "not-allowed", color: "#9597a0ff" }}
             />
 
             <label>Valor:</label>

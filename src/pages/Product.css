@@ -70,18 +70,19 @@
   margin: 20px 0;
 }
 
-.search-bar input {
+.search-bar {
   width: 300px;
   padding: 10px;
   font-size: 16px;
   border-radius: 8px;
-  border: 1px solid #ccc;
   outline: none;
   transition: 0.3s;
 }
 
 .search-bar input:focus {
   border-color: #007bff;
+  background-color: #f0f0f0;
+  color: black;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 

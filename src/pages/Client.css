@@ -1,8 +1,17 @@
 .client-page {
-  padding: 2rem;
-  color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh; /* ocupa toda a altura da tela */
+  /* background-color: #1e1f20; */
 }
 
+/* AAdd Button */
 .client-title {
-  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 50px;
+  margin-bottom: 20px;
 }
