@@ -11,11 +11,11 @@ import configuracoesImg from "../assets/configuracoes.png";
 function DashboardComponent() {
   const sections = [
     { name: "Produtos", img: produtosImg,  path: "/products" },
-    { name: "Serviços", img: servicosImg },
-    { name: "Relatórios", img: relatoriosImg },
+    { name: "Serviços", img: servicosImg, path: "/services" },
+    { name: "Relatórios", img: relatoriosImg, path: "/reports" },
     { name: "Clientes", img: clientesImg, path: "/clients" },
     { name: "Funcionários", img: funcionariosImg, path: "/employees"},
-    { name: "Configurações", img: configuracoesImg },
+    { name: "Configurações", img: configuracoesImg, path: "/configs" },
   ];
 
   return (

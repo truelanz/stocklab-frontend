@@ -1,0 +1,40 @@
+.servicejob-page {
+  padding: 1.5rem;
+  color: #f8f8f8;
+}
+
+.servicejob-header {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.servicejob-search {
+  display:flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.servicejob-search input,
+.servicejob-search select {
+  background: #1f2021;
+  color: #f8f8f8;
+  border: 1px solid #444;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.service-form {
+  max-width: 900px;
+  background: #272829;
+  padding: 1rem;
+  border-radius: 10px;
+  color: #f8f8f8;
+}
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
+
+.product-row { display:flex; gap:8px; margin-bottom:6px; align-items:center; }
+.product-row select, .product-row input { padding:6px; border-radius:6px; border:1px solid #444; background:#1f2021; color:#fff; }

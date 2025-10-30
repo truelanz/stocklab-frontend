@@ -1,0 +1,2 @@
+.service-table { width:100%; border-collapse:collapse; background:#272829; color:#f8f8f8; border-radius:10px; overflow:hidden; }
+.service-table th, .service-table td { padding:8px 12px; border-bottom:1px solid #333; text-align: center; }

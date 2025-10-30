@@ -86,7 +86,8 @@ function Product() {
 
   return (
     <div className="product-page">
-      <h1>Produtos</h1>
+
+      <h1> Produtos</h1>
 
       <div className="product-header">
         <div className="add-category-button" alt="Add Button" onClick={handleAddCategory}>

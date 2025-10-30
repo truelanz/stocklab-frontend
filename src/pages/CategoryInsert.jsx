@@ -146,7 +146,7 @@ function CategoryInsert() {
 
       {/* Paginação */}
       <div className="pagination">
-        <button className="btn-prev" onClick={prevPage} disabled={page === 0}>Anterior</button>
+        <button className="btn-back" onClick={prevPage} disabled={page === 0}>Anterior</button>
         <span>Página {page + 1} de {totalPages}</span>
         <button className="btn-next" onClick={nextPage} disabled={page >= totalPages - 1}>Próximo</button>
       </div>

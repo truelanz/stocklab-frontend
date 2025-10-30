@@ -1,0 +1,151 @@
+/* ServiceJob.css */
+
+.servicejob-insert {
+    max-width: 900px;
+    margin: auto;
+    background-color: #272829;
+    color: #f8f8f8;
+    padding: 1rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    font-family: "Inter", sans-serif;
+}
+
+.servicejob-insert h2 {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.servicejob-insert h3 {
+    margin-top: 2rem;
+    color: #f1f1f1;
+    font-weight: 500;
+}
+
+.service-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: medium;
+    color: #ddd;
+    margin-bottom: 0.1rem;
+    margin-left: 0.2rem;
+    display: block;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.6rem 0.8rem 0.5rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background-color: #1d1e1f;
+    color: #f8f8f8;
+    transition: all 0.2s ease;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #00aaff;
+    box-shadow: 0 0 6px rgba(0, 170, 255, 0.4);
+}
+
+/* Grid helpers */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+}
+
+/* Produtos */
+.products-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.product-row {
+    display: grid;
+    grid-template-columns: 1.5fr 0.5fr auto;
+    gap: 5rem;
+    align-items: center;
+}
+
+.product-row select,
+.product-row input {
+    padding: 0.5rem;
+}
+
+/* Botões */
+.btn-save,
+.btn-cancel {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-save {
+  background-color: #3da754;
+  color: #fff;
+}
+
+.btn-save:hover {
+  background-color: #33df80;
+}
+
+.btn-cancel {
+  background-color: #444;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #b63333;
+}
+
+/* Ações no final */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .servicejob-insert {
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .product-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}

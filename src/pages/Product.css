@@ -128,7 +128,7 @@
   align-items: center;
 }
 
-.btn-next {
+.pagination .btn-next {
   margin: 1rem;
   padding: 0.7rem 2rem;
   border-radius: 15px;
@@ -139,7 +139,7 @@
   transition: background-color 0.3s;
 }
 
-.btn-back {
+.pagination .btn-back {
   margin: 1rem;
   padding: 0.7rem 2rem;
   border-radius: 15px;
@@ -150,12 +150,12 @@
   transition: background-color 0.3s;
 }
 
-.btn-back:hover {
+.pagination .btn-back:hover {
   transform: translateY(-4px);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   background-color: rgb(122, 93, 136);
 }
-.btn-next:hover {
+.pagination .btn-next:hover {
   transform: translateY(-4px);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   background-color: rgb(87, 117, 138);

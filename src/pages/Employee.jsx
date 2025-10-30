@@ -167,7 +167,7 @@ function Employee() {
 
       {/*Paginação */}
       <div className="pagination">
-        <button className="btn-prev" onClick={prevPage} disabled={page === 0}>
+        <button className="btn-back" onClick={prevPage} disabled={page === 0}>
           Anterior
         </button>
         <span>

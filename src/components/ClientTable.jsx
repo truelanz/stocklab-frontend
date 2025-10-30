@@ -166,9 +166,9 @@ function ClientTable({ loadClients, onDelete }) {
       </table>
 
       {/* ===== Paginação ===== */}
-      <div style={{ display: "flex", justifyContent: "center", marginTop: "1rem", gap: "1rem" }}>
+      <div className="pagination">
         <button
-          className="btn-cancel"
+          className="btn-back"
           onClick={() => setPage((p) => Math.max(p - 1, 0))}
           disabled={page === 0}
         >
@@ -178,7 +178,7 @@ function ClientTable({ loadClients, onDelete }) {
           Página {page + 1} de {totalPages}
         </span>
         <button
-          className="btn-save"
+          className="btn-next"
           onClick={() => setPage((p) => (p < totalPages - 1 ? p + 1 : p))}
           disabled={page >= totalPages - 1}
         >
