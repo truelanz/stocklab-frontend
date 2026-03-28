@@ -8,22 +8,63 @@ function ClientInsert() {
   const [client, setClient] = useState({
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    cpf: "",
+    birth: "",
+    localAddress: "",
+    cep: "",
+    neighborhood: "",
+    city: "",
+    state: "",
+    healthPlan: ""
   });
 
+  const fetchAddressByCep = async (cep) => {
+  const cleanedCep = cep.replace(/\D/g, '');
+
+  //Lógica viaCEP
+  if (cleanedCep.length !== 8) return;
+
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cleanedCep}/json/`);
+      const data = await response.json();
+
+      if (data.erro) {
+        alert("CEP não encontrado");
+        return;
+      }
+
+      setClient((prev) => ({
+        ...prev,
+        city: data.localidade,
+        neighborhood: data.bairro,
+        state: data.uf,
+        localAddress: data.logradouro
+      }));
+
+    } catch (error) {
+      console.error("Erro ao buscar CEP:", error);
+    }
+  };
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setClient({ ...client, [e.target.name]: e.target.value });
+
+    if (name === "cep") {
+      fetchAddressByCep(value);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // envia para o backend
       const response = await api.post("/clients", client);
 
       if (response.status >= 200 && response.status < 300) {
         alert("Cliente cadastrado com sucesso!");
-        navigate("/"); // volta para a tabela
+        navigate("/clients");
       } else {
         throw new Error("Status não OK");
       }
@@ -50,7 +91,8 @@ function ClientInsert() {
       <div className="client-insert-card">
         <h2>Cadastrar Novo Cliente</h2>
         <form onSubmit={handleSubmit}>
-          <label>Nome:</label>
+
+          <label>Nome: *</label>
           <input
             type="text"
             name="name"
@@ -59,7 +101,17 @@ function ClientInsert() {
             required
           />
 
-          <label>Email:</label>
+          <label>CPF: *</label>
+          <input
+            type="text"
+            name="cpf"
+            value={client.cpf}
+            onChange={handleChange}
+            placeholder="000.000.000-00"
+            required
+          />
+
+          <label>Email: *</label>
           <input
             type="email"
             name="email"
@@ -73,6 +125,66 @@ function ClientInsert() {
             type="text"
             name="phone"
             value={client.phone}
+            onChange={handleChange}
+            placeholder="(opcional)"
+          />
+
+          <label>Data de Nascimento:</label>
+          <input
+            type="date"
+            name="birth"
+            value={client.birth}
+            onChange={handleChange}
+          />
+
+          <label>CEP:</label>
+          <input
+            type="text"
+            name="cep"
+            value={client.cep}
+            onChange={handleChange}
+            placeholder="00000-000"
+          />
+
+          <label>Cidade:</label>
+          <input
+            type="text"
+            name="city"
+            value={client.city}
+            onChange={handleChange}
+          />
+
+          <label>Bairro:</label>
+          <input
+            type="text"
+            name="neighborhood"
+            value={client.neighborhood}
+            onChange={handleChange}
+          />
+
+          <label>Estado:</label>
+          <input
+            type="text"
+            name="state"
+            value={client.state}
+            onChange={handleChange}
+            placeholder="UF"
+            maxLength={2}
+          />
+
+          <label>Endereço:</label>
+          <input
+            type="text"
+            name="localAddress"
+            value={client.localAddress}
+            onChange={handleChange}
+          />
+
+          <label>Plano de Saúde:</label>
+          <input
+            type="text"
+            name="healthPlan"
+            value={client.healthPlan}
             onChange={handleChange}
             placeholder="(opcional)"
           />

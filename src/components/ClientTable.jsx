@@ -3,6 +3,7 @@ import "./ClientTable.css";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 import add2 from "../assets/add2.png";
+import ClientModal from "./ClientModal";
 
 function ClientTable({ loadClients, onDelete }) {
   const navigate = useNavigate();
@@ -12,9 +13,8 @@ function ClientTable({ loadClients, onDelete }) {
   const [size] = useState(10);
   const [totalPages, setTotalPages] = useState(0);
   const [showModal, setShowModal] = useState(false);
-  const [editedClient, setEditedClient] = useState({});
+  const [selectedClient, setSelectedClient] = useState(null);
 
-  // === Carregar clientes paginados ===
   const fetchClients = async () => {
     try {
       const response = await api.get(`/clients?page=${page}&size=${size}`);
@@ -30,7 +30,6 @@ function ClientTable({ loadClients, onDelete }) {
     fetchClients();
   }, [page]);
 
-  // === Filtro dinâmico ===
   const filteredClients = clients.filter(
     (client) =>
       client.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -38,60 +37,19 @@ function ClientTable({ loadClients, onDelete }) {
       (client.phone && client.phone.includes(search))
   );
 
-  // === Formata data ===
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("pt-BR");
   };
 
-  // === Modal edição ===
   const openEditModal = (client) => {
-    setEditedClient({ ...client });
+    setSelectedClient(client);
     setShowModal(true);
   };
 
-  const closeModal = () => setShowModal(false);
-
-  const handleChange = (e) => {
-    setEditedClient({ ...editedClient, [e.target.name]: e.target.value });
-  };
-
-  // === Salvar edição ===
-  const handleSave = async () => {
-    try {
-      const updated = {
-        name: editedClient.name,
-        cpf: editedClient.cpf,
-        phone: editedClient.phone,
-        birth: editedClient.birth,
-        localAddress: editedClient.localAddress,
-      };
-
-      const response = await api.put(`/clients/${editedClient.id}`, updated);
-
-      if (response.status >= 200 && response.status < 300) {
-        await fetchClients();
-        alert("Cliente atualizado com sucesso!");
-        closeModal();
-      } else {
-        throw new Error("Status não OK");
-      }
-    } catch (error) {
-      console.error("Erro ao atualizar cliente:", error);
-
-      if (error.response && error.response.status === 400) {
-        const data = error.response.data;
-
-        if (data.errors && Array.isArray(data.errors)) {
-          const mensagens = data.errors.map((err) => `• ${err.message}`).join("\n");
-          alert(`Erro de validação:\n${mensagens}`);
-        } else {
-          alert(data.message || "Erro de validação ao atualizar cliente.");
-        }
-      } else {
-        alert("Erro inesperado ao atualizar cliente. Tente novamente.");
-      }
-    }
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedClient(null);
   };
 
   return (
@@ -105,9 +63,8 @@ function ClientTable({ loadClients, onDelete }) {
           marginBottom: "1rem",
         }}
       >
-
         <div className="add-client-button" alt="Add Button" onClick={() => navigate("/clients/new")}>
-          <img src={add2}></img> <h2>Novo Cliente</h2>
+          <img src={add2} alt="Adicionar" /> <h2>Novo Cliente</h2>
         </div>
 
         <div className="search-bar">
@@ -165,7 +122,6 @@ function ClientTable({ loadClients, onDelete }) {
         </tbody>
       </table>
 
-      {/* ===== Paginação ===== */}
       <div className="pagination">
         <button
           className="btn-back"
@@ -186,37 +142,12 @@ function ClientTable({ loadClients, onDelete }) {
         </button>
       </div>
 
-      {/* ===== Modal ===== */}
-      {showModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Editar Cliente</h2>
-
-            <label>Nome:</label>
-            <input name="name" value={editedClient.name} onChange={handleChange} />
-
-            <label>CPF:</label>
-            <input name="cpf" value={editedClient.cpf} onChange={handleChange} />
-
-            <label>Telefone:</label>
-            <input name="phone" value={editedClient.phone} onChange={handleChange} />
-
-            <label>Nascimento:</label>
-            <input type="date" name="birth" value={editedClient.birth} onChange={handleChange} />
-
-            <label>Endereço:</label>
-            <input name="localAddress" value={editedClient.localAddress} onChange={handleChange} />
-
-            <div className="modal-buttons">
-              <button onClick={handleSave} className="btn-save">
-                Salvar
-              </button>
-              <button onClick={closeModal} className="btn-cancel">
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </div>
+      {showModal && selectedClient && (
+        <ClientModal
+          client={selectedClient}
+          closeModal={closeModal}
+          loadClients={fetchClients}
+        />
       )}
     </div>
   );

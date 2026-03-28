@@ -18,7 +18,7 @@ function ClientModal({ client, closeModal, loadClients }) {
         phone: editedClient.phone,
         birth: editedClient.birth,
         localAddress: editedClient.localAddress,
-        CEP: editedClient.CEP,
+        cep: editedClient.cep,
         neighborhood: editedClient.neighborhood,
         city: editedClient.city,
         state: editedClient.state,
@@ -60,47 +60,57 @@ function ClientModal({ client, closeModal, loadClients }) {
 
         <div className="form-group">
           <label>Nome:</label>
-          <input name="name" value={editedClient.name} onChange={handleChange} />
+          <input name="name" value={editedClient.name || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>CPF:</label>
-          <input name="cpf" value={editedClient.cpf} onChange={handleChange} />
+          <input name="cpf" value={editedClient.cpf || ""} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" value={editedClient.email || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>Telefone:</label>
-          <input name="phone" value={editedClient.phone} onChange={handleChange} />
+          <input name="phone" value={editedClient.phone || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>Data de Nascimento:</label>
-          <input type="date" name="birth" value={editedClient.birth} onChange={handleChange} />
+          <input type="date" name="birth" value={editedClient.birth || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>CEP:</label>
-          <input name="cep" value={editedClient.cep} onChange={handleChange} />
+          <input name="cep" value={editedClient.cep || ""} onChange={handleChange} placeholder="00000-000" />
         </div>
 
         <div className="form-group">
           <label>Cidade:</label>
-          <input name="city" value={editedClient.city} onChange={handleChange} />
+          <input name="city" value={editedClient.city || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>Bairro:</label>
-          <input name="neighborhood" value={editedClient.neighborhood} onChange={handleChange} />
+          <input name="neighborhood" value={editedClient.neighborhood || ""} onChange={handleChange} />
         </div>
 
         <div className="form-group">
           <label>Estado:</label>
-          <input name="state" value={editedClient.state} onChange={handleChange} />
+          <input name="state" value={editedClient.state || ""} onChange={handleChange} placeholder="UF" maxLength={2} />
         </div>
 
         <div className="form-group">
           <label>Endereço:</label>
-          <input name="localAddress" value={editedClient.localAddress} onChange={handleChange} />
+          <input name="localAddress" value={editedClient.localAddress || ""} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Plano de Saúde:</label>
+          <input name="healthPlan" value={editedClient.healthPlan || ""} onChange={handleChange} />
         </div>
 
         <div className="modal-actions">

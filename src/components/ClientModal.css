@@ -11,12 +11,12 @@
   background: #2c2c2c;
   padding: 1rem;
   border-radius: 10px;
-  width: 400px;
+  width: 500px;
   color: #f8f8f8;
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 0px;
 }
 
 input {
