@@ -168,10 +168,8 @@ function ServiceJobModal({ service, closeModal, refresh }) {
           </div>
         </div>
 
-        <hr />
-
-        <h3>Produtos utilizados</h3>
         <div className="products-rows">
+          <h3>Produtos utilizados</h3>
           {(form.products || []).map((p, idx) => (
             <div className="product-row" key={idx}>
               <select value={p.productId || ""} onChange={(e) => updateProductRow(idx, "productId", Number(e.target.value))}>

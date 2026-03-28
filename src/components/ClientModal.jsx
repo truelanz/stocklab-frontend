@@ -18,6 +18,12 @@ function ClientModal({ client, closeModal, loadClients }) {
         phone: editedClient.phone,
         birth: editedClient.birth,
         localAddress: editedClient.localAddress,
+        CEP: editedClient.CEP,
+        neighborhood: editedClient.neighborhood,
+        city: editedClient.city,
+        state: editedClient.state,
+        healthPlan: editedClient.healthPlan,
+        email: editedClient.email
       };
 
       const response = await api.put(`/clients/${editedClient.id}`, updatedData);
@@ -70,6 +76,26 @@ function ClientModal({ client, closeModal, loadClients }) {
         <div className="form-group">
           <label>Data de Nascimento:</label>
           <input type="date" name="birth" value={editedClient.birth} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>CEP:</label>
+          <input name="cep" value={editedClient.cep} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Cidade:</label>
+          <input name="city" value={editedClient.city} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Bairro:</label>
+          <input name="neighborhood" value={editedClient.neighborhood} onChange={handleChange} />
+        </div>
+
+        <div className="form-group">
+          <label>Estado:</label>
+          <input name="state" value={editedClient.state} onChange={handleChange} />
         </div>
 
         <div className="form-group">
