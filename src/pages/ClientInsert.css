@@ -2,86 +2,91 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #1a1a1a;
+  min-height: 100vh;
+  /* background-color: #1a1a1a; */
+  padding: 20px;
 }
 
 .client-insert-card {
   background-color: #272829;
   color: #f8f8f8;
-  padding: 2rem;
+  padding: 1.5rem; /* Reduzido */
   border-radius: 12px;
-  width: 400px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 600px; /* Aumentado para comportar colunas */
+  /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); */
   animation: fadeIn 0.3s ease;
 }
 
 .client-insert-card h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
 }
 
+/* Estrutura de Grid/Linhas */
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 0.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 0.6rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Proporções específicas */
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+
 .client-insert-card label {
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+  font-size: 0.8rem; /* Menor para economizar espaço */
+  margin-bottom: 4px;
+  color: #bbb;
 }
 
 .client-insert-card input {
   background-color: #1f2021;
-  border: none;
+  border: 1px solid #333; /* Adicionado leve contorno */
   color: #f8f8f8;
-  padding: 0.6rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  padding: 0.5rem; /* Mais compacto */
+  border-radius: 4px;
+  font-size: 0.9rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .client-insert-buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
+  justify-content: flex-end; /* Botões alinhados à direita */
+  gap: 10px;
+  margin-top: 1.5rem;
 }
 
-.btn-save,
-.btn-cancel {
-  flex: 1;
-  margin: 0 0.25rem;
-  padding: 0.6rem;
+.btn-save, .btn-cancel {
+  padding: 0.6rem 1.5rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.2s;
+  transition: filter 0.2s;
 }
 
-.btn-save {
-  background-color: #007bff;
-  color: white;
-}
+.btn-save { background-color: #007bff; color: white; }
+.btn-cancel { background-color: #444; color: white; }
 
-.btn-save:hover {
-  background-color: #0069d9;
-}
-
-.btn-cancel {
-  background-color: #444;
-  color: white;
-}
-
-.btn-cancel:hover {
-  background-color: #555;
+.btn-save:hover, .btn-cancel:hover {
+  filter: brightness(1.2);
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
