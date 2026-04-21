@@ -12,4 +12,4 @@ export const getClientById = (id) => api.get(`/clients/${id}`);
 export const createClient = (client) => api.post("/clients/new", client);
 export const updateClient = (id, client) => api.put(`/clients/${id}`, client);
 export const deleteClient = (id) => api.delete(`/clients/${id}`);
-export const uploadClientImage = (id, image) => api.post(`/clients/upload`, image);
+// export const uploadClientImage = (id, image) => api.post(`/clients/upload`, image);

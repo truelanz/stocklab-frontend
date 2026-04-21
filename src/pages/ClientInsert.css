@@ -86,7 +86,81 @@
   filter: brightness(1.2);
 }
 
+/* Mantenha todo o seu código CSS anterior e adicione estas regras abaixo: */
+
+.photo-upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.photo-preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #141516;
+  border: 2px dashed #3a3b3e;
+  border-radius: 50%; /* Foto redonda estilo perfil */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+  overflow: visible;
+}
+
+.photo-preview:hover {
+  border-color: #4caf50;
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.photo-placeholder {
+  font-size: 2rem;
+  color: #3d3e42;
+}
+
+.photo-add-btn {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: #4caf50;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.photo-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  margin-top: 8px;
+  letter-spacing: 0.05em;
+}
+
+/* Ajuste no card para scroll caso fique muito alto */
+.cm-card {
+    scrollbar-gutter: stable;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
