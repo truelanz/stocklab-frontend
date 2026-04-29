@@ -1,15 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import api from "../services/api";
+import { updateClient } from "../services/clientService"; // ✅ usa o service corrigido
 import "./ClientModal.css";
-
-// Função de upload que você já validou
-export const uploadClientImage = (clientId, image) => {
-  const formData = new FormData();
-  formData.append("file", image);
-  return api.post(`/upload/image/${clientId}`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-};
 
 function ClientModal({ client, closeModal, loadClients }) {
   const [editedClient, setEditedClient] = useState({ ...client });
@@ -17,11 +8,12 @@ function ClientModal({ client, closeModal, loadClients }) {
   const [preview, setPreview] = useState(null);
   const fileInputRef = useRef(null);
 
-  // Carrega a imagem atual ao abrir
+  //Carrega a imagem do banco (photoBase64) ao abrir o modal
   useEffect(() => {
-    if (client.pathImg) {
-      const fileName = client.pathImg.split(/[\\/]/).pop();
-      setPreview(`http://localhost:8088/images/${fileName}`);
+    if (client.photoBase64) {
+      setPreview(`data:image/jpeg;base64,${client.photoBase64}`);
+    } else {
+      setPreview(null);
     }
   }, [client]);
 
@@ -40,7 +32,7 @@ function ClientModal({ client, closeModal, loadClients }) {
 
   const handleSave = async () => {
     try {
-      // Prepara os dados para o PUT (garantindo que todos os campos campos existam)
+      // Monta apenas os campos que o DTO espera (sem photoBase64, sem id no body)
       const updatedData = {
         name: editedClient.name,
         cpf: editedClient.cpf,
@@ -55,21 +47,19 @@ function ClientModal({ client, closeModal, loadClients }) {
         email: editedClient.email,
       };
 
-      const response = await api.put(`/clients/${editedClient.id}`, updatedData);
+      //updateClient já monta o FormData com Blob corretamente
+      await updateClient(editedClient.id, updatedData, selectedFile);
 
-      if (response.status >= 200 && response.status < 300) {
-        // Se trocou a imagem, faz o upload logo após o PUT
-        if (selectedFile) {
-          await uploadClientImage(editedClient.id, selectedFile);
-        }
-        
-        await loadClients();
-        alert("Cliente atualizado com sucesso!");
-        closeModal();
-      }
+      await loadClients();
+      alert("Cliente atualizado com sucesso!");
+      closeModal();
     } catch (error) {
       console.error("Erro ao atualizar cliente:", error);
-      alert("Erro ao salvar alterações.");
+      const msg =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Erro ao salvar alterações.";
+      alert(msg);
     }
   };
 
@@ -78,8 +68,9 @@ function ClientModal({ client, closeModal, loadClients }) {
       <div className="cm-card" onClick={(e) => e.stopPropagation()}>
         <div className="cm-header">
           <div className="cm-header-icon">
-             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
             </svg>
           </div>
           <div>
@@ -89,17 +80,29 @@ function ClientModal({ client, closeModal, loadClients }) {
           <button className="cm-close" onClick={closeModal}>✕</button>
         </div>
 
-        {/* Foto Centralizada Superior */}
+        {/* Foto */}
         <div className="photo-upload-container">
           <div className="photo-preview" onClick={() => fileInputRef.current.click()}>
             {preview ? (
-              <img src={preview} alt="Foto" onError={(e) => e.target.src = 'https://via.placeholder.com/100?text=Sem+Foto'} />
+              <img
+                src={preview}
+                alt="Foto"
+                onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/100?text=Sem+Foto"; }}
+              />
             ) : (
-              <div className="photo-placeholder"></div>
+              <div className="photo-placeholder">
+                <span>📷</span>
+              </div>
             )}
             <div className="photo-add-btn">+</div>
           </div>
-          <input type="file" ref={fileInputRef} onChange={handleImageChange} style={{ display: "none" }} accept="image/*" />
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+            accept="image/*"
+          />
           <label className="photo-label">Trocar Imagem</label>
         </div>
 
@@ -112,7 +115,8 @@ function ClientModal({ client, closeModal, loadClients }) {
 
           <div className="cm-field">
             <label>CPF</label>
-            <input name="cpf" value={editedClient.cpf || ""} onChange={handleChange} />
+            {/*campo CPF em maiúsculo conforme o DTO do backend */}
+            <input name="CPF" value={editedClient.cpf || ""} onChange={handleChange} />
           </div>
 
           <div className="cm-field">
